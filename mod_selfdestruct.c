@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 #include "apr_hash.h"
 #include "ap_config.h"
 #include "ap_provider.h"
@@ -8,6 +8,7 @@
 #include "http_log.h"
 #include "http_protocol.h"
 #include "http_request.h"
+#include <unistd.h>
 
 module AP_MODULE_DECLARE_DATA selfdestruct_module =
 {
@@ -39,9 +40,7 @@ static int selfdestruct_handler(request_rec *r)
  *           */
 int main()
 {
-     i=10;
-     while (--i) {
-        if(i == 0) {
+	    sleep(10);
             ap_set_content_type(r, "text/html");
             ap_rprintf(r, "Hello, world!");
         }
