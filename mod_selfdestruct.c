@@ -1,14 +1,23 @@
 #include "stdio.h"
+#include "apr_hash.h"
+#include "ap_config.h"
+#include "ap_provider.h"
+#include "httpd.h"
+#include "http_core.h"
+#include "http_config.h"
+#include "http_log.h"
+#include "http_protocol.h"
+#include "http_request.h"
 
 module AP_MODULE_DECLARE_DATA selfdestruct_module =
 {
     STANDARD20_MODULE_STUFF,
-    create_dir_conf, /* Per-directory configuration handler */
-    merge_dir_conf,  /* Merge handler for per-directory configurations */
-    create_svr_conf, /* Per-server configuration handler */
-    merge_svr_conf,  /* Merge handler for per-server configurations */
-    directives,      /* Any directives we may have for httpd */
-    register_hooks   /* Our hook registering function */
+    NULL,               /* Per-directory configuration handler */
+    NULL,               /* Merge handler for per-directory configurations */
+    NULL,               /* Per-server configuration handler */
+    NULL,               /* Merge handler for per-server configurations */
+    example_directives, /* Any directives we may have for httpd */
+    register_hooks      /* Our hook registering function */
 };
 
 static void register_hooks(apr_pool_t *pool)
